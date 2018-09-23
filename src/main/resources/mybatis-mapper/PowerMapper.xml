@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.syw.blog.dao.PowerMapper" >
+  <resultMap id="BaseResultMap" type="com.syw.blog.entity.Power" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="power_code" property="powerCode" jdbcType="INTEGER" />
+    <result column="power_name" property="powerName" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="create_account" property="createAccount" jdbcType="INTEGER" />
+    <result column="update_account" property="updateAccount" jdbcType="INTEGER" />
+    <result column="is_del" property="isDel" jdbcType="INTEGER" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+    <result column="father_code" property="fatherCode" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, power_code, power_name, create_time, update_time, create_account, update_account, 
+    is_del, url, father_code
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from power
+    where id = #{id,jdbcType=INTEGER} and is_del = 0
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from power
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.syw.blog.entity.Power" >
+    insert into power (id, power_code, power_name, 
+      create_time, update_time, create_account, 
+      update_account, is_del, url, 
+      father_code)
+    values (#{id,jdbcType=INTEGER}, #{powerCode,jdbcType=INTEGER}, #{powerName,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{createAccount,jdbcType=INTEGER}, 
+      #{updateAccount,jdbcType=INTEGER}, #{isDel,jdbcType=INTEGER}, #{url,jdbcType=VARCHAR}, 
+      #{fatherCode,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.syw.blog.entity.Power" >
+    insert into power
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="powerCode != null" >
+        power_code,
+      </if>
+      <if test="powerName != null" >
+        power_name,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="createAccount != null" >
+        create_account,
+      </if>
+      <if test="updateAccount != null" >
+        update_account,
+      </if>
+      <if test="isDel != null" >
+        is_del,
+      </if>
+      <if test="url != null" >
+        url,
+      </if>
+      <if test="fatherCode != null" >
+        father_code,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="powerCode != null" >
+        #{powerCode,jdbcType=INTEGER},
+      </if>
+      <if test="powerName != null" >
+        #{powerName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createAccount != null" >
+        #{createAccount,jdbcType=INTEGER},
+      </if>
+      <if test="updateAccount != null" >
+        #{updateAccount,jdbcType=INTEGER},
+      </if>
+      <if test="isDel != null" >
+        #{isDel,jdbcType=INTEGER},
+      </if>
+      <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="fatherCode != null" >
+        #{fatherCode,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.syw.blog.entity.Power" >
+    update power
+    <set >
+      <if test="powerCode != null" >
+        power_code = #{powerCode,jdbcType=INTEGER},
+      </if>
+      <if test="powerName != null" >
+        power_name = #{powerName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createAccount != null" >
+        create_account = #{createAccount,jdbcType=INTEGER},
+      </if>
+      <if test="updateAccount != null" >
+        update_account = #{updateAccount,jdbcType=INTEGER},
+      </if>
+      <if test="isDel != null" >
+        is_del = #{isDel,jdbcType=INTEGER},
+      </if>
+      <if test="url != null" >
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="fatherCode != null" >
+        father_code = #{fatherCode,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.syw.blog.entity.Power" >
+    update power
+    set power_code = #{powerCode,jdbcType=INTEGER},
+      power_name = #{powerName,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      create_account = #{createAccount,jdbcType=INTEGER},
+      update_account = #{updateAccount,jdbcType=INTEGER},
+      is_del = #{isDel,jdbcType=INTEGER},
+      url = #{url,jdbcType=VARCHAR},
+      father_code = #{fatherCode,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
