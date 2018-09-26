@@ -1,8 +1,15 @@
 package com.syw.blog.entity;
 
+import com.syw.blog.ptool.GeneralViews;
+
+import java.io.Serializable;
 import java.util.Date;
 
-public class User {
+public class User implements Serializable {
+
+    public interface UserSimpleView extends GeneralViews.INormalView {}
+    public interface UserDetailView extends UserSimpleView {}
+
     private Integer id;
 
     private String token;
@@ -141,5 +148,25 @@ public class User {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", token='" + token + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", gender='" + gender + '\'' +
+                ", age='" + age + '\'' +
+                ", profession='" + profession + '\'' +
+                ", telephone='" + telephone + '\'' +
+                ", email='" + email + '\'' +
+                ", introduction='" + introduction + '\'' +
+                ", createTime=" + createTime +
+                ", updateTime=" + updateTime +
+                ", isDel=" + isDel +
+                ", name='" + name + '\'' +
+                '}';
     }
 }
