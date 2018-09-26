@@ -1,11 +1,7 @@
 package com.syw.blog.dao;
 
 import com.syw.blog.entity.Power;
-import org.apache.ibatis.annotations.Mapper;
-import org.springframework.stereotype.Repository;
 
-@Mapper
-@Repository
 public interface PowerMapper {
     int deleteByPrimaryKey(Integer id);
 
