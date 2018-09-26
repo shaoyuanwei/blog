@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class PowerServiceImpl implements PowerService {
@@ -20,11 +21,6 @@ public class PowerServiceImpl implements PowerService {
     }
 
     @Override
-    public List<Power> queryPowerList() {
-        return null;
-    }
-
-    @Override
     public int insertPower(Power power) {
         return 0;
     }
@@ -32,5 +28,10 @@ public class PowerServiceImpl implements PowerService {
     @Override
     public int updatePower(Power power) {
         return 0;
+    }
+
+    @Override
+    public List<Power> queryPowerByLimit(Map<String, Object> param) {
+        return mapper.queryPowerByLimit(param);
     }
 }
