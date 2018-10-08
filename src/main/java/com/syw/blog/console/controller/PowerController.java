@@ -15,6 +15,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * 后台权限控制器
+ */
 @RestController
 @RequestMapping("/console/powwer")
 public class PowerController {

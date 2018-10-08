@@ -2,6 +2,7 @@ package com.syw.blog.dao;
 
 import com.syw.blog.entity.User;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 @Mapper
@@ -18,4 +19,7 @@ public interface UserMapper {
     int updateByPrimaryKeySelective(User record);
 
     int updateByPrimaryKey(User record);
+
+    User selectByUsername(@Param("username") String username);
+
 }
