@@ -10,4 +10,8 @@ public interface UserService {
 
     int insertUser(User user);
 
+    User getUserInfo(String md5token, Integer idDel);
+
+    User queryUserById(Integer id);
+
 }

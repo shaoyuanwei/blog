@@ -29,4 +29,14 @@ public class UserServiceImpl implements UserService {
     public int insertUser(User user) {
         return mapper.insert(user);
     }
+
+    @Override
+    public User getUserInfo(String md5token, Integer isDel) {
+        return mapper.getUserInfo(md5token, isDel);
+    }
+
+    @Override
+    public User queryUserById(Integer id) {
+        return mapper.selectByPrimaryKey(id);
+    }
 }

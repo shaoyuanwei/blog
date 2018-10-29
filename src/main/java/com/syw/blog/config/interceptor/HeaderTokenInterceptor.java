@@ -1,9 +1,11 @@
 package com.syw.blog.config.interceptor;
 
-import com.syw.blog.ptool.JwtUtil;
+import com.syw.blog.entity.User;
+import com.syw.blog.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -12,21 +14,28 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+@Component
 public class HeaderTokenInterceptor implements HandlerInterceptor {
 
     private final static Logger logger = LoggerFactory.getLogger(HeaderTokenInterceptor.class);
 
     @Autowired
-    private JwtUtil jwtUtil;
+    private UserService userService;
+
+//    private JwtUtil jwtUtil = new JwtUtil();
 
     @Override
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
+
+        logger.warn("tokenInterceptor--------------------->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
 
         String requestURI = request.getRequestURI();
         String tokenStr = request.getParameter("token");
         String token = "";
 
-        if (requestURI.contains("/*/")) {
+        logger.warn("url.contains------------------->{}", requestURI.contains("/api"));
+
+        if (requestURI.contains("/api")) {
             token = request.getHeader("token");
             if (token == null && tokenStr == null) {
                 logger.info("real token : =================is null");
@@ -37,7 +46,19 @@ public class HeaderTokenInterceptor implements HandlerInterceptor {
             if (tokenStr != null) {
                 token = tokenStr;
             }
-            token = jwtUtil.updateToken(token);
+
+            User user = userService.getUserInfo(token, 0);
+
+            if (user != null) {
+                logger.info("user token : ================={}", token);
+            } else {
+                logger.warn("real token invalid: ================={}", token);
+                String str = "{'result' : 801, 'message':'token失效，无法验证，重新登录'.'data':null}";
+                dealErrorReturn(request, response, str);
+                return false;
+                //更新token
+//                token = JwtUtil.updateToken(token);
+            }
             logger.info("real token:==============={}", token);
             logger.info("real other:==============={}", request.getHeader("Cookie"));
         }
@@ -49,7 +70,7 @@ public class HeaderTokenInterceptor implements HandlerInterceptor {
 
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
-
+        logger.warn("post.toekn request:{}", request);
     }
 
     @Override

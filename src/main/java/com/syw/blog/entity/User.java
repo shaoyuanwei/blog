@@ -1,9 +1,8 @@
 package com.syw.blog.entity;
 
-import java.io.Serializable;
 import java.util.Date;
 
-public class User implements Serializable {
+public class User {
     private Integer id;
 
     private String token;
@@ -31,6 +30,10 @@ public class User implements Serializable {
     private Integer isDel;
 
     private String name;
+
+    private String image;
+
+    private Date birthday;
 
     public Integer getId() {
         return id;
@@ -144,6 +147,22 @@ public class User implements Serializable {
         this.name = name;
     }
 
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -161,6 +180,8 @@ public class User implements Serializable {
                 ", updateTime=" + updateTime +
                 ", isDel=" + isDel +
                 ", name='" + name + '\'' +
+                ", image='" + image + '\'' +
+                ", birthday=" + birthday +
                 '}';
     }
 }

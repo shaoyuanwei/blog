@@ -1,8 +1,5 @@
 package com.syw.blog.ptool;
 
-import org.springframework.stereotype.Component;
-
-@Component
 public class RandomUtil {
 
     public final static char[] chars = {'a', 'b', 'c', 'd', 'e', 'f', 'g',
@@ -15,7 +12,7 @@ public class RandomUtil {
                                         'U', 'V', 'W', 'X', 'Y', 'Z',
                                         '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
 
-    public String generateRandom(int number) {
+    public static String generateRandom(int number) {
 
         String random = "";
 

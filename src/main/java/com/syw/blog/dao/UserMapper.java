@@ -22,4 +22,6 @@ public interface UserMapper {
 
     User selectByUsername(@Param("username") String username);
 
+    User getUserInfo(@Param("token") String token, @Param("isDel") Integer isDel);
+
 }
