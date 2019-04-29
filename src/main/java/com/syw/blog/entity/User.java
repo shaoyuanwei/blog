@@ -1,15 +1,8 @@
 package com.syw.blog.entity;
 
-import com.syw.blog.ptool.GeneralViews;
-
-import java.io.Serializable;
 import java.util.Date;
 
-public class User implements Serializable {
-
-    public interface UserSimpleView extends GeneralViews.INormalView {}
-    public interface UserDetailView extends UserSimpleView {}
-
+public class User {
     private Integer id;
 
     private String token;
@@ -18,9 +11,9 @@ public class User implements Serializable {
 
     private String password;
 
-    private String gender;
+    private Integer gender;
 
-    private String age;
+    private Integer age;
 
     private String profession;
 
@@ -37,6 +30,10 @@ public class User implements Serializable {
     private Integer isDel;
 
     private String name;
+
+    private String image;
+
+    private Date birthday;
 
     public Integer getId() {
         return id;
@@ -70,19 +67,19 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public String getGender() {
+    public Integer getGender() {
         return gender;
     }
 
-    public void setGender(String gender) {
+    public void setGender(Integer gender) {
         this.gender = gender;
     }
 
-    public String getAge() {
+    public Integer getAge() {
         return age;
     }
 
-    public void setAge(String age) {
+    public void setAge(Integer age) {
         this.age = age;
     }
 
@@ -150,6 +147,22 @@ public class User implements Serializable {
         this.name = name;
     }
 
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -157,8 +170,8 @@ public class User implements Serializable {
                 ", token='" + token + '\'' +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
-                ", gender='" + gender + '\'' +
-                ", age='" + age + '\'' +
+                ", gender=" + gender +
+                ", age=" + age +
                 ", profession='" + profession + '\'' +
                 ", telephone='" + telephone + '\'' +
                 ", email='" + email + '\'' +
@@ -167,6 +180,8 @@ public class User implements Serializable {
                 ", updateTime=" + updateTime +
                 ", isDel=" + isDel +
                 ", name='" + name + '\'' +
+                ", image='" + image + '\'' +
+                ", birthday=" + birthday +
                 '}';
     }
 }

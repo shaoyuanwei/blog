@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 import sun.misc.BASE64Decoder;
 import sun.misc.BASE64Encoder;
 
+import javax.annotation.PostConstruct;
 import javax.crypto.spec.SecretKeySpec;
 import javax.xml.bind.DatatypeConverter;
 import java.security.Key;
@@ -16,11 +17,20 @@ import java.util.Date;
 /**
  * jwt工具类
  */
-@Component
 public class JwtUtil {
 
     public static String sercetKey = "lingling960830";
+
     public final static long keeptime = 1800000;
+
+//    public static JwtUtil jwtUtil;
+//
+//    public JwtUtil(){}
+//
+//    @PostConstruct
+//    public void init() {
+//        jwtUtil = this;
+//    }
 
     public static String generToken(String id, String issuer, String subject) {
 
@@ -50,7 +60,7 @@ public class JwtUtil {
 
     }
 
-    public String updateToken(String token) {
+    public static String updateToken(String token) {
         try {
             Claims claims = verifyToken(token);
             String id = claims.getId();
@@ -64,7 +74,7 @@ public class JwtUtil {
         return  "0";
     }
 
-    public String updateTokenBase64Code(String token) {
+    public static String updateTokenBase64Code(String token) {
         BASE64Encoder base64Encoder = new BASE64Encoder();
         BASE64Decoder decoder = new BASE64Decoder();
         try {

@@ -1,5 +1,6 @@
 package com.syw.blog.test;
 
+import com.syw.blog.ptool.RandomUtil;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -57,6 +58,16 @@ public class Tests {
             }
         }
         logger.info("b的值为:{}", b);
+    }
+
+    @Test
+    public void random() {
+
+        int length = RandomUtil.chars.length;
+        logger.info("数组长度为:{}", length);
+
+//        String random = RandomUtil.generateRandom(10);
+//        logger.info("生成随机数:{}", random);
     }
 
 }

@@ -23,6 +23,9 @@ import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 import java.util.*;
 
+/**
+ * 后台管理员控制器
+ */
 @RestController
 @RequestMapping("/console/account")
 public class AccountController {

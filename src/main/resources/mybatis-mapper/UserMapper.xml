@@ -1,191 +1,213 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.syw.blog.dao.UserMapper" >
-  <resultMap id="BaseResultMap" type="com.syw.blog.entity.User" >
-    <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="token" property="token" jdbcType="VARCHAR" />
-    <result column="username" property="username" jdbcType="VARCHAR" />
-    <result column="password" property="password" jdbcType="VARCHAR" />
-    <result column="gender" property="gender" jdbcType="VARCHAR" />
-    <result column="age" property="age" jdbcType="VARCHAR" />
-    <result column="profession" property="profession" jdbcType="VARCHAR" />
-    <result column="telephone" property="telephone" jdbcType="VARCHAR" />
-    <result column="email" property="email" jdbcType="VARCHAR" />
-    <result column="introduction" property="introduction" jdbcType="VARCHAR" />
-    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
-    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
-    <result column="is_del" property="isDel" jdbcType="INTEGER" />
-    <result column="name" property="name" jdbcType="VARCHAR" />
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.syw.blog.dao.UserMapper">
+  <resultMap id="BaseResultMap" type="com.syw.blog.entity.User">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="token" jdbcType="VARCHAR" property="token" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="gender" jdbcType="INTEGER" property="gender" />
+    <result column="age" jdbcType="INTEGER" property="age" />
+    <result column="profession" jdbcType="VARCHAR" property="profession" />
+    <result column="telephone" jdbcType="VARCHAR" property="telephone" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="introduction" jdbcType="VARCHAR" property="introduction" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="is_del" jdbcType="INTEGER" property="isDel" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="image" jdbcType="VARCHAR" property="image" />
+    <result column="birthday" jdbcType="TIMESTAMP" property="birthday" />
   </resultMap>
-  <sql id="Base_Column_List" >
+  <sql id="Base_Column_List">
     id, token, username, password, gender, age, profession, telephone, email, introduction, 
-    create_time, update_time, is_del, name
+    create_time, update_time, is_del, name, image, birthday
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from user
     where id = #{id,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from user
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.syw.blog.entity.User" >
+  <insert id="insert" parameterType="com.syw.blog.entity.User">
     insert into user (id, token, username, 
       password, gender, age, 
       profession, telephone, email, 
       introduction, create_time, update_time, 
-      is_del, name)
+      is_del, name, image, 
+      birthday)
     values (#{id,jdbcType=INTEGER}, #{token,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, 
-      #{password,jdbcType=VARCHAR}, #{gender,jdbcType=VARCHAR}, #{age,jdbcType=VARCHAR}, 
+      #{password,jdbcType=VARCHAR}, #{gender,jdbcType=INTEGER}, #{age,jdbcType=INTEGER}, 
       #{profession,jdbcType=VARCHAR}, #{telephone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
       #{introduction,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
-      #{isDel,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR})
+      #{isDel,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{image,jdbcType=VARCHAR}, 
+      #{birthday,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="com.syw.blog.entity.User" >
+  <insert id="insertSelective" parameterType="com.syw.blog.entity.User">
     insert into user
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
         id,
       </if>
-      <if test="token != null" >
+      <if test="token != null">
         token,
       </if>
-      <if test="username != null" >
+      <if test="username != null">
         username,
       </if>
-      <if test="password != null" >
+      <if test="password != null">
         password,
       </if>
-      <if test="gender != null" >
+      <if test="gender != null">
         gender,
       </if>
-      <if test="age != null" >
+      <if test="age != null">
         age,
       </if>
-      <if test="profession != null" >
+      <if test="profession != null">
         profession,
       </if>
-      <if test="telephone != null" >
+      <if test="telephone != null">
         telephone,
       </if>
-      <if test="email != null" >
+      <if test="email != null">
         email,
       </if>
-      <if test="introduction != null" >
+      <if test="introduction != null">
         introduction,
       </if>
-      <if test="createTime != null" >
+      <if test="createTime != null">
         create_time,
       </if>
-      <if test="updateTime != null" >
+      <if test="updateTime != null">
         update_time,
       </if>
-      <if test="isDel != null" >
+      <if test="isDel != null">
         is_del,
       </if>
-      <if test="name != null" >
+      <if test="name != null">
         name,
       </if>
+      <if test="image != null">
+        image,
+      </if>
+      <if test="birthday != null">
+        birthday,
+      </if>
     </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="token != null" >
+      <if test="token != null">
         #{token,jdbcType=VARCHAR},
       </if>
-      <if test="username != null" >
+      <if test="username != null">
         #{username,jdbcType=VARCHAR},
       </if>
-      <if test="password != null" >
+      <if test="password != null">
         #{password,jdbcType=VARCHAR},
       </if>
-      <if test="gender != null" >
-        #{gender,jdbcType=VARCHAR},
+      <if test="gender != null">
+        #{gender,jdbcType=INTEGER},
       </if>
-      <if test="age != null" >
-        #{age,jdbcType=VARCHAR},
+      <if test="age != null">
+        #{age,jdbcType=INTEGER},
       </if>
-      <if test="profession != null" >
+      <if test="profession != null">
         #{profession,jdbcType=VARCHAR},
       </if>
-      <if test="telephone != null" >
+      <if test="telephone != null">
         #{telephone,jdbcType=VARCHAR},
       </if>
-      <if test="email != null" >
+      <if test="email != null">
         #{email,jdbcType=VARCHAR},
       </if>
-      <if test="introduction != null" >
+      <if test="introduction != null">
         #{introduction,jdbcType=VARCHAR},
       </if>
-      <if test="createTime != null" >
+      <if test="createTime != null">
         #{createTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="updateTime != null" >
+      <if test="updateTime != null">
         #{updateTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="isDel != null" >
+      <if test="isDel != null">
         #{isDel,jdbcType=INTEGER},
       </if>
-      <if test="name != null" >
+      <if test="name != null">
         #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="image != null">
+        #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null">
+        #{birthday,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.syw.blog.entity.User" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.syw.blog.entity.User">
     update user
-    <set >
-      <if test="token != null" >
+    <set>
+      <if test="token != null">
         token = #{token,jdbcType=VARCHAR},
       </if>
-      <if test="username != null" >
+      <if test="username != null">
         username = #{username,jdbcType=VARCHAR},
       </if>
-      <if test="password != null" >
+      <if test="password != null">
         password = #{password,jdbcType=VARCHAR},
       </if>
-      <if test="gender != null" >
-        gender = #{gender,jdbcType=VARCHAR},
+      <if test="gender != null">
+        gender = #{gender,jdbcType=INTEGER},
       </if>
-      <if test="age != null" >
-        age = #{age,jdbcType=VARCHAR},
+      <if test="age != null">
+        age = #{age,jdbcType=INTEGER},
       </if>
-      <if test="profession != null" >
+      <if test="profession != null">
         profession = #{profession,jdbcType=VARCHAR},
       </if>
-      <if test="telephone != null" >
+      <if test="telephone != null">
         telephone = #{telephone,jdbcType=VARCHAR},
       </if>
-      <if test="email != null" >
+      <if test="email != null">
         email = #{email,jdbcType=VARCHAR},
       </if>
-      <if test="introduction != null" >
+      <if test="introduction != null">
         introduction = #{introduction,jdbcType=VARCHAR},
       </if>
-      <if test="createTime != null" >
+      <if test="createTime != null">
         create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="updateTime != null" >
+      <if test="updateTime != null">
         update_time = #{updateTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="isDel != null" >
+      <if test="isDel != null">
         is_del = #{isDel,jdbcType=INTEGER},
       </if>
-      <if test="name != null" >
+      <if test="name != null">
         name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="image != null">
+        image = #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null">
+        birthday = #{birthday,jdbcType=TIMESTAMP},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.syw.blog.entity.User" >
+  <update id="updateByPrimaryKey" parameterType="com.syw.blog.entity.User">
     update user
     set token = #{token,jdbcType=VARCHAR},
       username = #{username,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR},
-      gender = #{gender,jdbcType=VARCHAR},
-      age = #{age,jdbcType=VARCHAR},
+      gender = #{gender,jdbcType=INTEGER},
+      age = #{age,jdbcType=INTEGER},
       profession = #{profession,jdbcType=VARCHAR},
       telephone = #{telephone,jdbcType=VARCHAR},
       email = #{email,jdbcType=VARCHAR},
@@ -193,7 +215,18 @@
       create_time = #{createTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP},
       is_del = #{isDel,jdbcType=INTEGER},
-      name = #{name,jdbcType=VARCHAR}
+      name = #{name,jdbcType=VARCHAR},
+      image = #{image,jdbcType=VARCHAR},
+      birthday = #{birthday,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="selectByUsername" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select * from user where username = #{username}
+  </select>
+
+  <select id="getUserInfo" parameterType="java.lang.Object" resultMap="BaseResultMap">
+    select * from user where token = #{token} and is_del = #{isDel}
+  </select>
+
 </mapper>
